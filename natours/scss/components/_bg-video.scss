@@ -1,0 +1,17 @@
+.bg-video{
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width:100%;
+    z-index: -1;
+    opacity: .15;
+
+    overflow: hidden;
+    &__content{
+        object-fit: cover;              // for element to fit full parent's size (like bg-image size but for elements of HTML)
+        height: 100%;
+        width:100%;
+    }
+
+}

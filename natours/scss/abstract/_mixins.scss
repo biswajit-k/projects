@@ -1,0 +1,53 @@
+@mixin clearfix {
+    &::after{
+        content:"";
+        display:table;
+        clear:both;
+    }   
+}
+
+@mixin absCenter {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+
+}
+
+// used mixin for width calculation
+@mixin calcColumnWidth ($guttersInRow, $numOfColumns, $colSpan) {
+    // Calculate the sum of the width of all gutters in the grid row
+    // A 4-col grid row has 3 gutters, etc...
+    $totalGutterWidth: $guttersInRow * $gutter-horizontal;
+   
+    // What is the width of the base column in that row?
+    $baseGridColumn: calc((100% - #{$totalGutterWidth}) / #{$numOfColumns});
+
+    $hiddenGutterWidth: calc((#{$colSpan} - 1) * #{$gutter-horizontal});
+   
+    // Outputs the calculated width
+    width:calc( #{$colSpan} * #{$baseGridColumn} + #{$hiddenGutterWidth});
+}
+
+// MEDIA QUERY MANAGER
+/*
+    we use below function to adding media queries in our scss, @content takes the content provided inside the function call
+
+    phone - 600px 
+    tab-port - 900px
+    tab-land - 1200px
+    1200px to 1800px our normal
+    big-desktop - 1800px +
+
+    em better for this than rem
+    1 em = 16px default
+
+*/
+
+
+@mixin respondMax($breakpoint) {
+      @media only screen and ( max-width: $breakpoint / 16px * 1em ) { @content };  // screen is for - if page is to be printed then size is full
+}
+@mixin respondMin($breakpoint) {
+      @media only screen and ( min-width: $breakpoint / 16px * 1em ) { @content };
+}

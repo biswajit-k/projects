@@ -1,0 +1,48 @@
+
+@keyframes moveInLeft{                                       // create your own animations 
+    0% {
+        opacity:.1;                                             // initially not visible 
+        transform:translateX(-10rem);                        // opacity and transform brings most of animation 
+    }
+    80% {
+        
+        transform:translateX(1rem);                             
+    }
+    100% {
+        opacity:1;
+        transform:translate(0);                                // original position at end 
+    }
+}
+@keyframes moveInRight{                                       // create your own animations 
+    0%{
+        opacity:.1;                                             // initially not visible 
+        transform:translateX(10rem);                        // opacity and transform brings most of animation 
+    }
+    80%{
+        transform:translateX(-1rem);                             
+    }
+    100%{
+        opacity:1;
+        transform:translate(0);                                // original position at end 
+    }
+}
+@keyframes fadeDown{                                     
+    0%{
+        opacity:0; 
+        transform:translateY(10rem);
+    }
+    100%{
+        opacity:1;
+        transform:translate(0);
+    }
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+

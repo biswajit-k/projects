@@ -1,0 +1,175 @@
+.navigation{
+    &__checkbox{
+        display:none;
+    }
+    &__button{
+        width:7rem;
+        height:7rem;
+        
+        position: fixed;
+        top:3.5rem;
+        right:4rem;
+        z-index:2000;
+
+        background-color: $color-white;
+        border-radius: 50%;
+        box-shadow: 0 1rem 3rem rgba($color-black,.1);
+        text-align: center;                     // to align nav__icon
+
+        &:hover{
+            cursor:pointer;
+        }
+        @include respondMax($tab-port){
+            height: 5rem;
+            width: 5rem;
+            top:4rem;
+            right:4rem;
+        }
+        @include respondMax($phone){
+            top:3rem;
+            right:3rem;
+        }
+    
+    }
+    &__background{
+        width:6rem;
+        height:6rem;
+        position: fixed;
+        top:4rem;
+        right:4.5rem;
+        border-radius: 50%;
+        background-image: radial-gradient(#32d468,$color-primary-dark);
+        z-index:1000;
+        transition: all .4s;
+
+        @include respondMax($tab-port){
+            height: 4.2rem;
+            width: 4.2rem;
+            top:4.5rem;
+            right:4.5rem;
+        }
+        @include respondMax($phone){
+            top:3.5rem;
+            right:3.5rem;
+        }
+        
+    }
+    &__nav{
+        width:100%;
+        height: 100vh;
+        position: fixed;
+        top:0;
+        right:0;
+        z-index:1500;
+        transition: all .4s;
+
+        // when input not checked
+        // display:none;
+        opacity: 0;
+        width:0%;
+    }
+    &__list{
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        list-style: none;
+        display: none;
+    }
+    &__item{
+        margin:1.2rem;
+        span{
+            margin-right: 1.5rem;
+        }
+    }
+    &__link{
+        &:link,&:visited{
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: $color-white;
+            font-size: 2.5rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 49.9%, $color-white 50%, $color-white 100%);
+            background-size: 232%;
+            transition: all .4s;
+
+        }
+        &:hover,&:active{
+            background-color: $color-white;
+            color: $color-primary-dark;
+            background-position: 100%;
+            transform: translateX(1rem);
+        }
+    }
+    &__checkbox:checked ~ &__nav {
+        opacity:1;
+        width:100%;
+        & .navigation__list{
+            display: inline-block;
+        }
+            
+    }
+    &__checkbox:checked ~ &__background {
+        
+        transform: scale(80);
+    }
+    &__icon{
+        margin-top: 3.5rem;
+        position: relative;
+        
+        @include respondMax($tab-port) {
+            margin-top: 2.5rem;
+        }
+        &,&::after,&::before{
+            display:inline-block;
+            width:3rem;
+            height: 2px;
+            background-color: $color-grey-darker;
+            // transition: margin-top 0, background-color 0;
+            
+            @include respondMax($tab-port) { width: 2rem;}
+        }
+        &::after,&::before{
+            position: absolute;
+            content:"";
+            left:0;
+            transition: all .2s;
+        }
+        &::after{
+            top:.8rem;
+            @include respondMax($tab-port) { top: .6rem;}
+        }
+        &::before{
+            top:-.8rem;
+            @include respondMax($tab-port) {top: -.6rem;}
+        }
+    }
+    &__button:hover &__icon::after{                // since icon is child we can select easily using parent
+        top:1rem;
+        @include respondMax($tab-port) {top: .6rem;}
+
+    }
+    &__button:hover &__icon::before{                // since icon is child we can select easily using parent
+        top: -1rem;
+        @include respondMax($tab-port) {top: -.6rem;}
+
+    }
+
+    // make icon crossed when checkbox is checked
+    &__checkbox:checked + &__button &__icon{                // + since adjacent sibling
+        background-color: transparent;
+        &::after,&::before{
+            top:0;
+
+        }
+        &::after{
+            transform: rotate(-135deg);             // instead of 45deg this rotates more so better effect
+        }
+        &::before{
+            transform: rotate(135deg);
+        }
+    }
+}

@@ -1,0 +1,64 @@
+.composition{
+    position:relative;
+
+    &__photo{
+        position: absolute;                             // all stacked, now change position individually
+        width:55%;                                      // % width on photo better
+        box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.2);
+        border-radius: 2px;
+
+        outline-offset:2rem;                            // create outline(similar to border but outline on border) 2rem away
+
+        transition: all .2s;
+
+        @include respondMax($tab-port) {
+            float: left;
+            position: relative;                     // so that take space
+            width: 33.3333333%;
+            
+        }
+
+        &--p1{
+            top:1rem;
+            left:6rem;
+            @include respondMax($tab-port) {
+                top: -1rem;
+                left: -1.2rem;
+                transform: scale(1.1) ;
+            }
+
+
+        } 
+        &--p2{
+            top:3rem;
+            right:.5rem;
+            @include respondMax($tab-port) {
+                top: 1rem;
+                left: -2rem;
+                transform: scale(1.2);
+                z-index: 2;
+            }
+        } 
+        &--p3{
+            top:12rem;
+            right:10rem;
+            @include respondMax($tab-port) {
+                top: -1rem;
+                left: -1.2rem;
+                transform: scale(1.1);
+
+            }
+        } 
+        &:hover{
+            transform: scale(1.05) translateY(5px);
+            box-shadow: 0 2.5rem 4.5rem rgba(0,0,0,0.5);        //shadow increased
+            outline:1.5rem solid $color-primary;            
+            z-index:5;                                      // z-index increased
+            
+        }
+
+    }
+    &:hover &__photo:not(:hover){          // decrease size of not hovered photos
+        transform: scale(.95);
+    }
+}

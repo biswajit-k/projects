@@ -1,0 +1,51 @@
+
+
+.header{
+
+    height:95vh;                                             // always keep 95% viewport height
+
+    background-image:linear-gradient(to right bottom
+    ,rgba($color-primary-light, 0.801)                       //we can put color with opacity like this
+    ,rgba($color-primary-dark, 0.801))
+    , url(../img/hero.jpg);                                  // show two photo lineargradient and url 
+
+    background-size:cover;                                   // take full size
+
+    background-position: top;                                // on crop top is zoomed 
+
+    clip-path:polygon(0 0,100% 0,100% 75vh,0 100%);            // makes polygon shape of view here 4 vertices
+
+    position:relative;                                              // to use position:absloute on logo-box 
+
+    @include respondMax($phone){
+      clip-path:polygon(0 0,100% 0,100% 75vh,0 100%); 
+    }
+
+    &__logo-box{
+        position:absolute;                                          // position from parent start 
+        top:4rem;
+        left:4rem;
+     }
+     &__logo{
+        height:3.5rem;                                            // browser sets width automatically if not provided, same for height 
+     }
+     &__text-box{                                                  
+        position:absolute;                                      // to make text-box in centre 
+        left:50%;
+        top:40%;
+        transform:translate(-50%,-50%);                       // position changes w.r.t starting of block, so to make it relative to centre of block we did translate of 50% 
+
+        /*
+         or you can use top:0; left:0; bottom:0; right:0; margin:auto;
+        */
+
+     
+        text-align: center;
+     }
+
+}
+
+
+//  logo-box:hover .logo{
+//       means add css to logo when logo-box is hovered
+//  }

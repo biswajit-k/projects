@@ -1,0 +1,189 @@
+.card{
+    
+    perspective: 150rem;            // it creates length effect in z-axis when it rotates i.e looks like it comes out of plane
+    position:relative;
+    height:45rem;                   
+
+    &__side{                        // properties are added to side so that white-background is visible when it rotates
+        
+        height:100%;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+
+        border-radius:3px;
+        box-shadow: 0 1.5rem 4rem rgba(0,0,0,.15);
+        
+        transition: all .8s ease;
+        backface-visibility: hidden;            // when card is in rotated position back is not visible
+        overflow: hidden;                       // on adding image, borders covered by them so it cuts overflows
+        
+        &--front{
+            background-color: $color-white;
+        }
+        &--back{
+            transform:rotateY(-180deg);          // initially rotated
+            &-1{
+                background-image: linear-gradient(to right bottom,$color-secondary-light,$color-secondary-dark);
+            }
+            &-2{
+                background-image: linear-gradient(to right bottom,$color-primary-light,$color-primary-dark);
+            }
+            &-3{
+                background-image: linear-gradient(to right bottom,$color-tertiary-light,$color-tertiary-dark);
+            }
+
+        }
+        
+    }
+    &__picture{
+        height: 20rem;
+        background-blend-mode: screen;          // to blend back image with color
+        
+        &-1{
+            
+            background-image:linear-gradient(to right bottom,$color-secondary-light,$color-secondary-dark),url(../img/nat-5.jpg);
+            clip-path:polygon(0 0,100% 0,100% 90%,0 100%); 
+        }
+        &-2{
+            background-image:linear-gradient(to right bottom,$color-primary-light,$color-primary-dark),url(../img/nat-6.jpg);
+            clip-path:polygon(0 0,100% 0,100% 90%,0 100%); 
+        }
+        &-3{
+            background-image:linear-gradient(to right bottom,$color-tertiary-light,$color-tertiary-dark),url(../img/nat-7.jpg);
+            clip-path:polygon(0 0,100% 0,100% 90%,0 100%); 
+        }      
+        background-size: cover;
+    }
+    &__heading{
+        font-size: 2.5rem;
+        font-weight: 300;
+        color:$color-white;
+        text-transform: uppercase;
+        text-align: right;                  // align text to right
+        width:75%;                          // to stop block element cover whole width
+        padding:1rem 1.5rem;
+
+        position:absolute;                  // to move heading to right
+        top:10rem;
+        right:1rem;
+
+        
+        
+    } 
+    &__heading-span{
+        box-decoration-break: clone;          // w/o it content will be treated as single line so, with this new line is treated
+                                              //  new content and padding applied correctly
+        &-1{
+            background-image: linear-gradient(to right bottom,rgba($color-secondary-light,.85),rgba($color-secondary-dark,.85));
+        }
+        &-2{
+            background-image: linear-gradient(to right bottom,rgba($color-primary-light,.85),rgba($color-primary-dark,.85));
+        }
+        &-3{
+            background-image: linear-gradient(to right bottom,rgba($color-tertiary-light,.85),rgba($color-tertiary-dark,.85));
+        }
+    } 
+
+    &__detail{
+        width:80%;
+        margin:0 auto;
+        text-align: center;
+        
+        & ul{
+            font-size: 1.5rem;
+            font-weight: 300;
+            list-style-type: none;
+            & li{
+                padding:1rem 1rem;
+
+                &:not(:last-child){
+                    border-bottom:1px solid $color-grey-light-2;
+
+                }
+            }
+        }
+    }
+
+    &__cta{
+        width:90%;
+        margin:0 auto;
+        text-align: center;
+        margin-top: 30%;
+        color: $color-white;
+        &__only{
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            
+        }
+        &__value{
+            font-size: 6rem;
+            font-weight: 200;
+            margin-bottom: 20%;
+
+        }
+    }   
+
+    &:hover &__side{
+        &--front{
+            transform:rotateY(180deg);          
+        }
+        &--back{
+            transform: rotateY(0deg);           // back to normal position
+        }
+    }
+    @media only screen and ( max-width: $tab-port / 16px * 1em ), only screen and (hover: none) {          // also for touch devices as they can't hover back
+        perspective:none;          
+        position:relative;
+        height:auto;  
+                         
+        &__side{                   
+            
+            width:80%;
+            position:relative;
+            box-shadow: none;
+            border-radius: 0;
+
+            &--front {
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+                border-radius: none;
+            }
+            &--back{
+                width: 79.5% !important;                // coz overflowing
+                z-index: -1;
+                margin-top: -10%;
+                transform:rotateY(0deg);    
+                padding-bottom: 3rem;      
+            }
+        }    
+        &__cta{
+            width:90%;
+            margin-top: 8%;
+            &__only{
+                padding-top: 2rem;
+                font-size: 2rem;
+                margin-bottom: 0rem;
+                
+            }
+            &__value{
+                font-size: 4.5rem;
+                // font-weight: 200;
+                margin-bottom: 4%;
+
+            }
+        }     
+        &__detail {
+            padding-bottom: 5rem;
+        }                                  
+
+        &:hover &__side{
+            &--front{
+                transform:rotateY(0deg);          
+            }
+
+        }
+    }
+}

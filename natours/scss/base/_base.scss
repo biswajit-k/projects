@@ -1,0 +1,55 @@
+ // to reset all properties so every browser render same  
+
+
+ html{
+   font-size: 62.5%;                             //  10px is what % of 16px
+
+   // tab-land first coz for 700px -- tab-port after land, so port will work
+
+   @include respondMax ($tab-land){             // 9px
+      font-size: 56.25%;                          
+   }
+   @include respondMax ($tab-port){              // 8px for phone also
+      font-size: 50%;                           
+   }
+    
+   @include respondMin ($big-desktop){          // 12px
+      font-size: 75%;                           
+   }
+
+   overflow-x: hidden;                       // for white space on small screen
+}
+
+*,*::after,*::before{                                  
+   margin:0;
+   padding:0;
+   box-sizing: inherit;                           // (inherit from body) so that users can change box-sizing values from here
+}
+
+body{
+   box-sizing: border-box;
+
+   // padding: 3rem;                                          // have space with ends
+
+   @include respondMax ($tab-port){
+      padding: 0;
+   }
+
+   overflow-x: hidden;
+   
+}
+
+::selection {           // colour-text on selection
+   background-color: $color-primary;
+   color:$color-white;
+
+}
+::-webkit-scrollbar {                              // for scrollbar styles
+   width: 1.3rem;
+}
+::-webkit-scrollbar-thumb {
+   background-color: $color-primary-dark;
+   margin: .5rem;
+   border-radius: .2rem;
+   border: solid 0.2rem $color-primary-dark;
+}

@@ -1,0 +1,30 @@
+// below are the names of partial files i.e name begin with _
+// and the files which will not be compiled to css and whose text is imported in mainfile
+
+// import code inside "abstract folder" in "_functions.scss" 
+@import "abstract/functions";
+@import "abstract/mixins";
+@import "abstract/variables";
+                                    
+@import "base/animation";  
+@import "base/base";  
+@import "base/typography";  
+@import "base/utilities";  
+
+@import "components/bg-video";
+@import "components/button";
+@import "components/card";
+@import "components/composition";
+@import "components/feature-box";
+@import "components/form";
+@import "components/popup";
+@import "components/story";
+
+@import "layout/footer";
+@import "layout/grid";
+@import "layout/header";
+@import "layout/navigation";
+@import "pages/home";
+
+
+//use elena font family for paragraph text

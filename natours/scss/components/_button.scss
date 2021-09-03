@@ -1,0 +1,103 @@
+
+
+.btn{
+    &,                          // & is for all (i.e <button> also coz no pseudo visited,link for button)
+    &:visited,&:link{                                    
+
+        // we have written &:link because it selects those tags with "href" and those are "not-visited","hovered","active" which-
+        //allows us to set different properties for hover, visited, and active as we did below   
+    
+       text-decoration: none;
+       text-transform: uppercase;
+       display:inline-block;
+       font-size:$default-font-size;
+       border-radius: 10rem;
+       padding:1.5rem 4rem;
+       transition: all 0.2s;
+    
+       position: relative;             // to use absolute position for pseudo btn below 
+
+       //for button
+        border: none;
+        cursor: pointer;
+    }
+    &:hover{
+       transform: translateY(-3px);                        // for lift up effect 
+    
+       box-shadow: 0 1rem 2rem rgba($color-black,0.2);        // values are- xlength ylength blur-length color(add opacity less eg-0.2)  
+
+       &::after{                                  // when btn is hover add style to pseudo btn 
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity:0;
+     }
+    }
+    
+    &:active,&:focus{                                         // code of active is put after hover as we can click only after it is hovered 
+       transform: translateY(-1px);
+       box-shadow: 0 .5rem 1rem rgba($color-black,0.2);
+    }
+    &--white{
+       background-color: $color-white;
+       color: $color-grey;
+
+        &::after{
+            background-color: $color-white;
+        }
+    }
+    &--primary{
+        background-color: $color-primary;
+        color: $color-white;
+ 
+         &::after{
+             background-color: $color-primary;
+         }
+     }
+    &--animated{
+       animation-fill-mode: backwards;                    // apply 0% animation property initially 
+       animation: fadeDown 1s ease-out;
+       
+    }
+    &::after{                                        // we are keeping a big button behind btn which fades on hover 
+    
+       content:"";                                     // we need to specify content of element 
+    
+       display:inline-block;                            // now we are adding style to look like original button 
+       width: 100%;
+       height: 100%;
+       border-radius:10rem;
+    
+       position:absolute;                              // to hide button behind btn keep it at same place of btn, add z-index -1 
+       left:0;
+       top: 0;
+       z-index: -1;    
+       transition: all 0.4s;
+    
+    }
+       
+}
+.btn-small{
+    &:visited,
+    &:link{
+        font-size: $default-font-size;
+        text-decoration: none;
+        color:$color-primary;
+        display: inline-block;
+        padding: .8rem 4px;
+        border-bottom: 2px solid $color-primary;
+        border-radius: .2rem;
+        transition:all 0.2s;
+    }
+    
+
+    &:hover{
+        background-color: $color-primary;
+        color:$color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black,0.2);
+        transform: translateY(-2px);
+    }
+    &:active{
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,0.2);
+    }
+
+}

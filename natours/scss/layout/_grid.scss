@@ -1,0 +1,68 @@
+
+.row{
+
+    max-width: $grid-width;
+    padding: 0 1rem;
+    margin:0 auto;
+
+    @include respondMax($tab-port){
+        max-width:50rem;
+    }
+    @include respondMax($phone){
+        width:68%;
+    }
+    &:not(:last-child){            // not pseudo selector takes a pseudo element on which property will not be applied
+
+        margin-bottom:$gutter-vertical;
+
+        
+    }
+
+
+    @include clearfix;
+
+    [class^="col-"]{                                    // atribute selector ^= starting with col-
+                                                        // *= means containing , $= means ending with
+        // background-color: orangered;
+        float:left;
+        &:not(:last-child){
+            margin-right:$gutter-horizontal;
+
+            @include respondMax($tab-port){
+                margin-right: 0;
+                margin-bottom: $gutter-vertical-small;
+            }
+
+        }
+        @include respondMax($tab-port){
+            width:100% !important;                  // important because original width below it
+        }
+    }
+    // hash should be used inside calc for variables calc(css function) is better than scss calculations coz it
+        // can take all units in 1 calculation becoz all these values converted to pixel in css not scss
+        
+    .col-1-of-2{    
+
+        // width:calc((100% - #{$gutter-horizontal}) / 2);      
+        @include calcColumnWidth(1,2,1);                                             
+        
+        }
+
+    .col-1-of-3{
+        // width:calc((100% - #{$gutter-horizontal}) / 3);
+        @include calcColumnWidth(2,3,1);
+    }
+    .col-2-of-3{
+        // width:calc(100% - #{$gutter-horizontal} - (100% - #{$gutter-horizontal}) / 3);
+        @include calcColumnWidth(2,3,2);
+    }
+    .col-1-of-4{
+        // width:calc((100% - 2 * #{$gutter-horizontal}) / 4);
+        @include calcColumnWidth(3,4,1);
+    }
+    .col-2-of-4{
+        // width:calc((100% - 2 * #{$gutter-horizontal}) / 2);
+        @include calcColumnWidth(3,4,2);
+    }
+
+}
