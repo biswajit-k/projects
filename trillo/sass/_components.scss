@@ -22,14 +22,20 @@
         border: none;
         border-radius: 2rem;
         transition: width .2s;
-
+        
         &:focus{
-            width: 100%;
+            width: 100% ;
             outline: none;
             background-color: var(--color-grey-light-3);
             color: var(--color-grey-dark-3);
 
         }
+        // & +:focus{
+        //     width: 100% ;
+        //     outline: none;
+        //     background-color: var(--color-grey-light-3);
+        //     color: var(--color-grey-dark-3);
+        // }
         &::placeholder{
             color: var(--color-grey-light-4);
         }
@@ -39,7 +45,7 @@
         background-color: --var(--color-grey-light-3);
     }
     &__button {
-        background-color: --var(--color-grey-light-2);
+        background-color: var(--color-grey-light-2);
         border: none;
         fill: var(--color-grey-dark-3);                                 // svg color
         :hover{
@@ -52,6 +58,9 @@
             transform: translateY(2px);
         }
     }
+
+   
+
     &__icon{
         height:1.8rem;
         width: 1.8rem;

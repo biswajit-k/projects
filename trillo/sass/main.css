@@ -79,7 +79,7 @@ body {
   background-color: --var(--color-grey-light-3);
 }
 .search__button {
-  background-color: --var(--color-grey-light-2);
+  background-color: var(--color-grey-light-2);
   border: none;
   fill: var(--color-grey-dark-3);
 }
